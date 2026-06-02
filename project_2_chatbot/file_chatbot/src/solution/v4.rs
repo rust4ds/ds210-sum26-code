@@ -33,8 +33,6 @@ impl ChatbotV4 {
 
         let output = chat_session.add_message(message).await.unwrap();
         let session = chat_session.session().unwrap();
-        let history = session.history();
-        println!("{:?}", history.len());
         file_library::save_chat_session_to_file(filename, &session);
         return output;
     }
@@ -42,7 +40,7 @@ impl ChatbotV4 {
     pub fn get_history(&self, username: String) -> Vec<String> {
         let filename = &format!("{}.txt", username);
 
-        match file_library::load_chat_session_from_file(&filename) {
+        match file_library::load_chat_session_from_file(filename) {
             None => {
                 return Vec::new();
             },
