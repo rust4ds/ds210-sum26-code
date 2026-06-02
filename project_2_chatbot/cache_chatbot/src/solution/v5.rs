@@ -66,7 +66,10 @@ impl ChatbotV5 {
                         return Vec::new();
                     }
                     Some(session) => {
-                        let history = session.history().iter().skip(1).map(|msg| msg.content().to_string()).collect();
+                        let history = session.history().iter()
+                            .filter(|msg| msg.role() != MessageType::SystemPrompt)
+                            .map(|msg| msg.content().to_string())
+                            .collect();
                         let fresh_chat = self.model.chat().with_system_prompt("The assistant will act like a pirate");
                         let chat_session = fixed_load_session(fresh_chat, session);
                         self.cache.put(username.clone(), chat_session);
