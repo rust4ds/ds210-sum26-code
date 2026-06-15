@@ -3,6 +3,7 @@ use csv::StringRecord;
 use csv_sniffer::{Sniffer, Type};
 use crate::dataset::{ColumnType, Dataset, Row, Value};
 
+//function just builds the csv file into a dataset 
 pub fn read_input_csv_file(filename: &str) -> Dataset {
     // Sniff CSV column types.
     let mut sniffer = Sniffer::new();
