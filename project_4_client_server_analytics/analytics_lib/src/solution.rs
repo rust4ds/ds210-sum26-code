@@ -96,7 +96,8 @@ pub fn aggregate_dataset(dataset: HashMap<Value, Dataset>, aggregation: &Aggrega
     .collect()
 }
 
-//function for part 2 - slow rpc!!
+//function for part 2 - slow rpc!! 
+//takes all the 
 pub fn compute_query_on_dataset(dataset: &Dataset, query: &Query) -> Dataset {
     let filtered = filter_dataset(dataset, query.get_filter());
     let grouped = group_by_dataset(filtered, query.get_group_by());
